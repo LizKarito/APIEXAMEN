@@ -38,7 +38,7 @@ try {
   const [rows]=await conmysql.query('insert into clientes (cli_identificacion, cli_nombre, cli_telefono, cli_correo, cli_direccion, cli_pais, cli_ciudad) values(?,?,?,?,?,?,?)',
     [cli_identificacion, cli_nombre, cli_telefono, cli_correo, cli_direccion, cli_pais, cli_ciudad])
   res.send({
-    id:rows.insertId
+    cli_id:rows.insertId
   })
 
 } catch (error) {
@@ -98,7 +98,8 @@ async(req, res)=>{
             id:0,
             message:"NO pudo eliminar al cliente"
         })
-        res.sendStatus(202)
+        //res.sendStatus(202)
+        res.status(200).json({ message: 'Cliente eliminado correctamente', id: 1 });
     } catch (error) {
         return res.status(500).json({message:"Error del lado del servidor"})
     }
