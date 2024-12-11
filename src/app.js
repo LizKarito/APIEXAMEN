@@ -2,10 +2,7 @@ import express from 'express'
 import cors from 'cors';//importa los paquetes cors--permisoa de acceso
 import path from 'path';
 import {fileURLToPath} from 'url';
-import clientesRoutes from './routes/clientes.routes.js'
-import usuariosRoutes from './routes/usuarios.routes.js'
-import productosRoutes from './routes/productos.routes.js'
-
+import examenRoutes from './routes/examen.routes.js'
 //definir modulo de ES
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,9 +17,8 @@ app.use(express.json());//para que interprete los objetos json
 app.use(express.urlencoded({extended:true}));//se añade para poder receptar formularios
 app.use('/uploads',express.static(path.join(__dirname,'../uploads')));
 //rutas
-app.use('/api',clientesRoutes)
-app.use('/api',usuariosRoutes )
-app.use('/api',productosRoutes)
+app.use('/api',examenRoutes)
+
 
 app.use((req,res,next)=>{
     res.status(400).json({
